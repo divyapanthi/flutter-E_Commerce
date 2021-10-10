@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/widgets/product_grid.dart';
 
-class ProductViewScreen extends StatefulWidget {
-  const ProductViewScreen({Key? key}) : super(key: key);
+class ProductOverviewScreen extends StatefulWidget {
+  const ProductOverviewScreen({Key? key}) : super(key: key);
 
   @override
-  _ProductViewScreenState createState() => _ProductViewScreenState();
+  _ProductOverviewScreenState createState() => _ProductOverviewScreenState();
 }
 
-class _ProductViewScreenState extends State<ProductViewScreen> {
-
-
-
+class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +18,7 @@ class _ProductViewScreenState extends State<ProductViewScreen> {
           style: TextStyle(fontFamily: "Raleway"),
         ),
       ),
-      body: ProductGrid()
+      body: const ProductGrid()
     );
   }
 }

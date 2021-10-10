@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_e_commerce/models/product.dart';
 
-class Products {
+class Products with ChangeNotifier {
 
-  List<Product> items = [
+  final List<Product> _items = [
     Product(
         id: "first",
         title: "Watch",
@@ -35,10 +36,19 @@ class Products {
         id: "fourth",
         title: "Shoes",
         price: 4000.0,
-        description: "",
+        description: "Classy white boots to fit your attire.",
         imageURL: "https://th.bing.com/th/id/R.e39c5b2bfa61b4b53e8453feb4d62d97?rik=1sjEaJxxR%2bXVlg&riu=http%3a%2f%2fwww.cstylejeans.com%2fwp-content%2fuploads%2f2016%2f02%2fmens-fashion-shoes-cheap.jpg&ehk=y7vNX%2bmlx0oeYlVpuE%2fzTyT5HpwOhQHq7dl38YVLVmg%3d&risl=&pid=ImgRaw&r=0",
         isFavourite: false,
     ),
   ];
+
+
+  List<Product> get items{
+    return [..._items];
+  }
+
+  Product findById(String id){
+    return _items.firstWhere((prod) => prod.id == id);
+  }
 
 }

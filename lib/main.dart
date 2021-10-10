@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/models/products.dart';
+import 'package:flutter_e_commerce/screens/product_details_screen.dart';
 import 'package:flutter_e_commerce/screens/product_overview_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,15 +14,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Shop Venue',
-      theme: ThemeData(
-        primaryColor: Colors.blueGrey,
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.red),
-        fontFamily: "Raleway",
+    return ChangeNotifierProvider.value(
+      value: Products(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Shop Venue',
+        theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+          accentColor: Colors.red,
+          fontFamily: "Raleway",
+        ),
+        initialRoute: "/",
+        routes: {
+          "/" :(ctx) =>  const ProductOverviewScreen(),
+          ProductDetailScreen.routeName : (ctx) => const ProductDetailScreen(),
+
+        },
       ),
-      home: const ProductViewScreen(),
     );
   }
 }
