@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/models/cart_provider.dart';
 import 'package:flutter_e_commerce/models/product.dart';
+import 'package:flutter_e_commerce/models/products.dart';
 import 'package:flutter_e_commerce/screens/product_details_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +10,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loadedProduct = Provider.of<Product>(context);
+    final loadedProduct = Provider.of<Product>(context, listen: false);
     final cartProvider = Provider.of<Cart>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
@@ -28,14 +29,18 @@ class ProductItem extends StatelessWidget {
             loadedProduct.title!,
             textAlign: TextAlign.center,
           ),
-          leading: IconButton(
-            icon: Icon(loadedProduct.isFavourite!
-                ? Icons.favorite
-                : Icons.favorite_outline),
-            onPressed: () {
-              loadedProduct.toggleIsFavourite();
-            },
-            color: Colors.red,
+          leading: Consumer<Product>(
+            builder: (_, prod, child){
+              return IconButton(
+                icon: Icon(prod.isFavourite!
+                    ? Icons.favorite
+                    : Icons.favorite_outline),
+                onPressed: () {
+                  prod.toggleIsFavourite();
+                },
+                color: Colors.red,
+              );
+            }
           ),
           trailing: IconButton(
             icon: const Icon(Icons.shopping_cart),
